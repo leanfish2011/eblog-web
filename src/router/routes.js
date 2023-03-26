@@ -4,7 +4,6 @@
 
 // 1、引入各个组件
 import Home from '../components/home/item/Home'
-import My from '../components/home/item/My'
 import Search from '../components/home/item/Search'
 import Message from '../components/home/item/Message'
 import About from '../components/home/item/About'
@@ -31,7 +30,6 @@ import Tool from '../components/home/item/Tool'
 // 2、设置路由路径
 export default [
   {path: "/", component: Home},
-  {path: "/my", component: My},
   {path: "/search", component: Search},
   {path: "/message", component: Message},
   {path: "/about", component: About},

@@ -34,12 +34,12 @@
     data() {
       return {
         toolList: [
-          {
-            "id": "0",
-            "name": "WebPhotoshop",
-            "url": Service.otherUrl.webPhotoshop,
-            "remark": "在线绘图工具。由作者本人研发"
-          },
+          // {
+          //   "id": "0",
+          //   "name": "WebPhotoshop",
+          //   "url": Service.otherUrl.webPhotoshop,
+          //   "remark": "在线绘图工具。由作者本人研发"
+          // },
           {
             "id": "3d3eb99f-f2a5-4fec-98d7-12143bd7eec7",
             "name": "在线工具",
@@ -65,7 +65,7 @@
   }
 
   .toolContent {
-    min-height: calc(100vh - 194px);
+    min-height: calc(100vh - 186px);
     width: 50%;
     margin: 5px auto 5px auto;
   }

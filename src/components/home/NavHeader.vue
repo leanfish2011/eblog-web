@@ -10,14 +10,15 @@
         </div>
         <div id="midSearch">
           <el-form :model="searchForm">
-            <el-input v-model="searchForm.keyword" size="medium" class="searchInput" placeholder="请输入关键词"></el-input>
+            <el-input v-model="searchForm.keyword" size="medium" class="searchInput"
+                      placeholder="请输入关键词"></el-input>
             <el-button type="primary" plain size="medium" @click="search()">搜索一下</el-button>
           </el-form>
         </div>
         <div id="toolInfo">
           <el-row type="flex" justify="center" align="middle">
             <el-col :span="22">
-               <el-link type="primary" icon="el-icon-message" @click="openSub()">订阅</el-link>
+              <el-link type="primary" icon="el-icon-message" @click="openSub()">订阅</el-link>
             </el-col>
           </el-row>
         </div>
@@ -25,29 +26,19 @@
       <div id="divMenu">
         <ul>
           <label v-for="item in menuData">
-            <label v-if="showMenu(item.id)">
-              <li>
-                <router-link :to=item.route exact>{{item.name}}</router-link>
-              </li>
-            </label>
+            <li>
+              <router-link :to=item.route exact>{{ item.name }}</router-link>
+            </li>
           </label>
         </ul>
       </div>
     </div>
-    <fast-add-site-dialog ref="fastAddSite"></fast-add-site-dialog>
   </div>
 </template>
 
 <script>
-import Service from "../../config/service";
-import AuthUtil from "../../utils/authUtil";
-import FastAddSiteDialog from "./FastAddSiteDialog";
-
 export default {
   name: "NavHeader",
-  components: {
-    fastAddSiteDialog: FastAddSiteDialog,
-  },
   data() {
     return {
       userName: "",
@@ -60,21 +51,16 @@ export default {
         },
         {
           id: "2",
-          name: "我的",
-          route: "/my",
-        },
-        {
-          id: "3",
           name: "工具",
           route: "/tool",
         },
         {
-          id: "4",
+          id: "3",
           name: "留言",
           route: "/message",
         },
         {
-          id: "5",
+          id: "4",
           name: "关于",
           route: "/about",
         },
@@ -93,59 +79,15 @@ export default {
       }
 
       //url中传递参数
-      this.$router.push({ path: "/search", query: { keyword: keyword } });
-    },
-    logout() {
-      this.$confirm("确认退出?", "提示", {}).then(() => {
-        //调用接口
-        this.$axios
-          .get(Service.authUrl.logout, {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-            },
-          })
-          .then((res) => {
-            AuthUtil.clearSession();
-            this.userName = "";
-            this.userPhotoUrl = "";
-            this.$router.push("/");
-          })
-          .catch(function (error) {
-            console.error(error);
-          });
-      });
-    },
-    addSite() {
-      this.$refs.fastAddSite.dialogFormVisible = true;
-    },
-    showMenu(id) {
-      // "我的"菜单需要登录后才显示
-      if (id == "2" && (this.userName == null || this.userName == "")) {
-        return false;
-      }
-
-      return true;
-    },
-    openLogin() {
-      this.$router.push("/login");
-    },
-    openRegister() {
-      this.$router.push("/register");
+      this.$router.push({path: "/search", query: {keyword: keyword}});
     },
     openSub() {
       this.$router.push("/sub");
     },
-    openMange() {
-      this.$router.push("/site");
-    },
     goHome() {
       this.$router.push("/");
     },
-  },
-  created() {
-    this.userName = localStorage.getItem("userName");
-    this.userPhotoUrl = localStorage.getItem("photourl");
-  },
+  }
 };
 </script>
 

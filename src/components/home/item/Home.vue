@@ -11,13 +11,13 @@
               </a>
             </el-col>
             <el-col :span="22">
-              <el-link :href="item.url" target="_blank" class="el-link">{{item.name}}
+              <el-link :href="item.url" target="_blank" class="el-link">{{item.title}}
               </el-link>
-              <el-tooltip effect="dark" placement="bottom-end" v-if="isMore(item.remark)">
-                <div slot="content" v-html="showRemarkTip(item.remark)"></div>
-                <div class="remark">{{cutRemark(item.remark)}}</div>
+              <el-tooltip effect="dark" placement="bottom-end" v-if="isMore(item.content)">
+                <div slot="content" v-html="showRemarkTip(item.content)"></div>
+                <div class="remark">{{cutRemark(item.content)}}</div>
               </el-tooltip>
-              <div class="remark" v-else>{{item.remark}}</div>
+              <div class="remark" v-else>{{item.content}}</div>
             </el-col>
           </el-row>
         </el-card>

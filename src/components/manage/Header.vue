@@ -7,7 +7,7 @@
             <img width="50" height="50" src="../../../static/img/pen.png"/>
           </el-col>
           <el-col :span="22">
-            <span class="logoTitle">爱收藏-后台管理</span>
+            <span class="logoTitle">eblog-后台管理</span>
           </el-col>
         </el-row>
       </div>
@@ -17,39 +17,27 @@
               <el-link href="/" type="primary">回到首页</el-link>
               <el-divider direction="vertical"></el-divider>
           </el-col>
-          <el-col :span="6">
-              <el-link @click="changePwd" type="primary">修改密码</el-link>
-              <el-divider direction="vertical"></el-divider>
-          </el-col>
           <el-col :span="5">
               <el-link @click="logout" type="primary">退出登录</el-link>
           </el-col>
           <el-col :span="7">
-            <el-tooltip effect="dark" :content=userName placement="left-start">
-              <el-avatar :size="30" ref="photourlAvatar" :src=userPhotoUrl></el-avatar>
-            </el-tooltip>
+            <span>eblog-后台管理</span>
           </el-col>
         </el-row>
       </div>
     </div>
-    <change-pwd-dialog ref="changePwd"></change-pwd-dialog>
   </div>
 </template>
 
 <script>
   import Service from '../../config/service'
   import AuthUtil from '../../utils/authUtil'
-  import ChangePwdDialog from './ChangePwdDialog'
 
   export default {
     name: "Header",
-    components: {
-      "changePwdDialog": ChangePwdDialog,
-    },
     data() {
       return {
-        userName: '',
-        userPhotoUrl: '',
+        userCode: ''
       }
     },
     methods: {
@@ -63,21 +51,16 @@
             }
           }).then((res) => {
             AuthUtil.clearSession();
-            this.userName = '';
-            this.userPhotoUrl = '';
+            this.userCode = '';
             this.$router.push('/login');
           }).catch(function (error) {
             console.error(error);
           });
         })
-      },
-      changePwd() {
-        this.$refs.changePwd.dialogFormVisible = true;
       }
     },
     mounted() {
-      this.userName = localStorage.getItem('userName');
-      this.userPhotoUrl = localStorage.getItem('photourl');
+      this.userCode = localStorage.getItem('userCode');
     }
   }
 </script>

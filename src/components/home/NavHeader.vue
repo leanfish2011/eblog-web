@@ -15,13 +15,6 @@
             <el-button type="primary" plain size="medium" @click="search()">搜索一下</el-button>
           </el-form>
         </div>
-        <div id="toolInfo">
-          <el-row type="flex" justify="center" align="middle">
-            <el-col :span="22">
-              <el-link type="primary" icon="el-icon-message" @click="openSub()">订阅</el-link>
-            </el-col>
-          </el-row>
-        </div>
       </div>
       <div id="divMenu">
         <ul>
@@ -56,11 +49,6 @@ export default {
         },
         {
           id: "3",
-          name: "留言",
-          route: "/message",
-        },
-        {
-          id: "4",
           name: "关于",
           route: "/about",
         },
@@ -80,9 +68,6 @@ export default {
 
       //url中传递参数
       this.$router.push({path: "/search", query: {keyword: keyword}});
-    },
-    openSub() {
-      this.$router.push("/sub");
     },
     goHome() {
       this.$router.push("/");
@@ -120,26 +105,14 @@ export default {
 }
 
 #midSearch {
-  width: 60%;
-  margin-left: 50px;
+  width: 90%;
+  margin-left: 10px;
 }
 
 .searchInput {
   width: 400px;
   height: 30px;
   font-size: 15px;
-}
-
-#toolInfo {
-  width: 30%;
-  text-align: right;
-  margin-left: 20px;
-}
-
-#toolInfo .el-col {
-  display: flex;
-  justify-content: end;
-  align-items: center;
 }
 
 #divMenu {

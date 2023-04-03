@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form :model="loginModel" :rules="validRule" status-icon ref="loginForm"
              label-position="left" class="login-page">
-      <h2 class="title">爱收藏 - 登录</h2>
+      <h2 class="title">eblog - 登录</h2>
       <el-form-item prop="userCode">
         <el-input v-model="loginModel.userCode" placeholder="请输入用户名">
         </el-input>
@@ -13,25 +13,11 @@
       </el-form-item>
       <el-checkbox v-model="checked" class="rememberme">记住密码
       </el-checkbox>
-      <!-- <el-row>
-        <el-col :span="24">
-          <el-tooltip class="item" effect="dark" content="试试github登录" placement="top-start">
-            <a href="#">
-              <img @click="githubLogin" height="30" width="30"
-                   src="../../../../static/img/github.png"/>
-            </a>
-          </el-tooltip>
-        </el-col>
-      </el-row> -->
       <el-form-item style="width:100%;margin-top: 10px;">
         <el-button type="primary" style="width:100%;" @click="onSubmit" :loading="logining">登录
         </el-button>
       </el-form-item>
-      <el-link href="/register" type="primary">立即注册</el-link>
-      &nbsp;
       <el-link href="/" type="primary">回到首页</el-link>
-      &nbsp;
-      <el-link href="/find" type="primary">忘记密码？</el-link>
     </el-form>
   </div>
 </template>
@@ -87,12 +73,9 @@
                   this.logining = false;
                   let userData = responseData.data;
                   localStorage.setItem("userCode", userData.userCode);
-                  localStorage.setItem("userName", userData.name);
                   localStorage.setItem("token", userData.token);
-                  localStorage.setItem("userId", userData.userId);
-                  localStorage.setItem("photourl", userData.photourl);
 
-                  this.$router.push({path: "/my"});
+                  this.$router.push({path: "/blog"});
                 } else {
                   this.logining = false;
                   this.$message.error(responseData.msg);
@@ -104,11 +87,8 @@
             });
           }
         });
-      },
-      githubLogin() {
-        window.location.href = Service.otherUrl.githubAuth;
-      },
-    },
+      }
+    }
   };
 </script>
 

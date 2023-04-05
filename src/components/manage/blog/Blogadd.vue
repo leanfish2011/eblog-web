@@ -43,52 +43,56 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      if (this.addModel.id === "" || this.addModel.id === undefined) {
-        this.$axios.post(Service.blogUrl.blog, this.addModel,
-            {
+    onSubmit(event) {
+      event.preventDefault();
+      this.$refs.addForm.validate((valid) => {
+        if (valid) {
+          if (this.addModel.id === "" || this.addModel.id === undefined) {
+            this.$axios.post(Service.blogUrl.blog, this.addModel,
+                {
+                  headers: {
+                    'Authorization': localStorage.getItem('token')
+                  }
+                }).then((res) => {
+              if (res.status === 200) {
+                let responseData = res.data;
+                if (responseData.code === 0) {
+                  this.$message.success(responseData.msg);
+                } else {
+                  this.$message.error(responseData.msg);
+                  if (responseData.code === -2) {
+                    AuthUtil.clearSession();
+                    this.$router.push('/login');
+                  }
+                }
+              } else {
+                this.$message.error("系统内部错误");
+              }
+            })
+          } else {
+            this.$axios.put(Service.blogUrl.blog, this.addModel, {
               headers: {
                 'Authorization': localStorage.getItem('token')
               }
             }).then((res) => {
-          if (res.status === 200) {
-            let responseData = res.data;
-            if (responseData.code === 0) {
-              this.$message.success(responseData.msg);
-            } else {
-              this.$message.error(responseData.msg);
-              if (responseData.code === -2) {
-                AuthUtil.clearSession();
-                this.$router.push('/login');
+              if (res.status === 200) {
+                let responseData = res.data;
+                if (responseData.code === 0) {
+                  this.$message.success(responseData.msg);
+                } else {
+                  this.$message.error(responseData.msg);
+                  if (responseData.code === -2) {
+                    AuthUtil.clearSession();
+                    this.$router.push('/login');
+                  }
+                }
+              } else {
+                this.$message.error("系统内部错误");
               }
-            }
-          } else {
-            this.$message.error("系统内部错误");
+            })
           }
-        })
-      } else {
-        this.$axios.put(Service.blogUrl.blog, this.addModel, {
-          headers: {
-            'Authorization': localStorage.getItem('token')
-          }
-        }).then((res) => {
-          if (res.status === 200) {
-            let responseData = res.data;
-            if (responseData.code === 0) {
-              this.$message.success(responseData.msg);
-            } else {
-              this.$message.error(responseData.msg);
-              if (responseData.code === -2) {
-                AuthUtil.clearSession();
-                this.$router.push('/login');
-              }
-            }
-          } else {
-            this.$message.error("系统内部错误");
-          }
-        })
-      }
-
+        }
+      });
     },
     onClear() {
       this.addModel = Object.assign({}, "");

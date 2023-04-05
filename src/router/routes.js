@@ -10,8 +10,8 @@ import About from '../components/home/item/About'
 import Login from '../components/home/login/Login'
 import Tool from '../components/home/item/Tool'
 import Manage from '../components/manage/Manage'
-import BlogList from '../components/manage/blog/bloglist.vue'
-import BlogAdd from '../components/manage/blog/blogadd.vue'
+import BlogList from '../components/manage/blog/Bloglist.vue'
+import BlogAdd from '../components/manage/blog/Blogadd.vue'
 
 // 2、设置路由路径
 export default [

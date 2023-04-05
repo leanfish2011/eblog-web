@@ -75,7 +75,7 @@
                   localStorage.setItem("userCode", userData.userCode);
                   localStorage.setItem("token", userData.token);
 
-                  this.$router.push({path: "/blog"});
+                  this.$router.push({path: "/bloglist"});
                 } else {
                   this.logining = false;
                   this.$message.error(responseData.msg);

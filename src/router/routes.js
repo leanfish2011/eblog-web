@@ -7,9 +7,10 @@ import Home from '../components/home/item/Home'
 import Search from '../components/home/item/Search'
 import About from '../components/home/item/About'
 import Login from '../components/home/login/Login'
-import Manage from '../components/manage/Manage'
-import Blog from '../components/manage/blog/blog.vue'
 import Tool from '../components/home/item/Tool'
+import Manage from '../components/manage/Manage'
+import BlogList from '../components/manage/blog/bloglist.vue'
+import BlogAdd from '../components/manage/blog/blogadd.vue'
 
 // 2、设置路由路径
 export default [
@@ -22,7 +23,8 @@ export default [
     path: "/manage",
     component: Manage,
     children: [
-      {path: "/blog", component: Blog}
+      {path: "/bloglist", component: BlogList},
+      {path: "/blogadd", component: BlogAdd}
     ]
   }
 ]

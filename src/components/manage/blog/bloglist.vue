@@ -2,26 +2,12 @@
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item>后台管理</el-breadcrumb-item>
-      <el-breadcrumb-item>个人网址管理</el-breadcrumb-item>
+      <el-breadcrumb-item>博客列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider></el-divider>
     <el-form ref="form" :inline="true" :model="searchForm" label-width="80px" size="mini">
       <el-form-item label="标题">
-        <el-input v-model="searchForm.name" placeholder="标题" clearable></el-input>
-      </el-form-item>
-      <el-form-item label="创建时间">
-        <el-date-picker
-          v-model="value2"
-          type="daterange"
-          align="right"
-          unlink-panels
-          range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期"
-          value-format="yyyy-MM-dd HH:mm:ss"
-          :default-time="['00:00:00', '23:59:59']"
-          :picker-options="pickerOptions">
-        </el-date-picker>
+        <el-input v-model="searchForm.title" placeholder="标题" clearable></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSearch">查询</el-button>
@@ -33,31 +19,17 @@
     <el-divider></el-divider>
     <el-table
       size="medium"
-      :data="siteData"
+      :data="blogData"
       stripe
       style="width: 100%">
       <el-table-column
-        prop="name"
+        prop="title"
         label="标题"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="url"
-        label="链接"
-        width="500">
-        <template slot-scope="scope">
-          <a :href="scope.row.url"
-             target="_blank"
-             class="buttonText">{{scope.row.url}}</a>
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="remark"
+        prop="content"
         label="备注">
-      </el-table-column>
-      <el-table-column
-        prop="tag"
-        label="标签">
       </el-table-column>
       <el-table-column
         prop="createTime"
@@ -88,96 +60,40 @@
       layout="prev, pager, next, total, sizes"
       :total="totalCount">
     </el-pagination>
-    <site-add-dialog ref="addDialog" @refresh="load()"></site-add-dialog>
+    <site-add-dialog ref="addDialog" @refresh="loadData()"></site-add-dialog>
   </div>
 </template>
 
 <script>
-  import SiteAddDialog from './SiteAddDialog'
   import Service from '../../../config/service'
   import DateUtil from '../../../utils/dateUtil'
   import AuthUtil from '../../../utils/authUtil'
 
   export default {
-    name: "Site",
-    components: {
-      "siteAddDialog": SiteAddDialog
-    },
+    name: "bloglist",
     data() {
       return {
         perSize: 10,
         totalCount: 1,
         currentPage: 1,
         searchForm: {
-          name: null,
-          createTimeStart: null,
-          createTimeEnd: null,
+          title: null,
           pageNo: 1,
           pageSize: 10
         },
-        value2: '',
-        siteData: null,
-        pickerOptions: {
-          shortcuts: [{
-            text: '最近一周',
-            onClick(picker) {
-              picker.$emit('pick', DateUtil.beforeDate(7));
-            }
-          }, {
-            text: '最近一个月',
-            onClick(picker) {
-              picker.$emit('pick', DateUtil.beforeDate(30));
-            }
-          }, {
-            text: '最近三个月',
-            onClick(picker) {
-              picker.$emit('pick', DateUtil.beforeDate(90));
-            }
-          }]
-        },
+        blogData: null
       }
     },
     methods: {
       onSearch() {
-        if (this.value2 != null) {
-          this.searchForm.createTimeStart = this.value2[0];
-          this.searchForm.createTimeEnd = this.value2[1];
-        } else {
-          this.searchForm.createTimeStart = null;
-          this.searchForm.createTimeEnd = null;
-        }
-
-        if (this.searchForm.name == '') {
-          this.searchForm.name = null;
+        if (this.searchForm.title == '') {
+          this.searchForm.title = null;
         }
 
         this.searchForm.pageNo = this.currentPage;
         this.searchForm.pageSize = this.perSize;
 
-        this.$axios.get(Service.siteUrl.sitePersonal, {
-          params: this.searchForm,
-          headers: {
-            'Authorization': localStorage.getItem('token')
-          }
-        }).then((res) => {
-          if (res.status === 200) {
-            let responseData = res.data;
-            if (responseData.code === 0) {
-              this.totalCount = responseData.data.allTotal;
-              this.siteData = responseData.data.list;
-            } else {
-              this.$message.error(responseData.msg);
-              if (responseData.code === -2) {
-                AuthUtil.clearSession();
-                this.$router.push('/login');
-              }
-            }
-          } else {
-            this.$message.error("系统内部错误");
-          }
-        }).catch(function (error) {
-          console.error(error);
-        });
+        this.loadData();
       },
       handleCurrentChange(val) {
         this.currentPage = val;
@@ -188,11 +104,10 @@
         this.onSearch();
       },
       onAddShow() {
-        this.$refs.addDialog.dialogFormVisible = true;
+        this.$router.push('/blogadd');
       },
       handleEdit(index, row) {
-        this.$refs.addDialog.dialogFormVisible = true;
-        this.$refs.addDialog.addModel = Object.assign({}, row);//将数据传入dialog页面
+        this.$router.push('/blogadd');
       },
       handleDelete(index, row) {
         this.$confirm('确定删除?', '提示', {
@@ -200,7 +115,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$axios.delete(Service.siteUrl.sitePersonal + '/' + row.id,
+          this.$axios.delete(Service.blogUrl.blog + '/' + row.id,
             {
               headers: {
                 'Authorization': localStorage.getItem('token')
@@ -210,7 +125,8 @@
               let responseData = res.data;
               if (responseData.code === 0) {
                 this.$message.success(responseData.msg);
-                this.load();
+
+                this.loadData();
               } else {
                 this.$message.error(responseData.msg);
                 if (responseData.code === -2) {
@@ -233,8 +149,8 @@
       dateFormat(row) {
         return DateUtil.dateFormat(row.createTime);
       },
-      load() {
-        this.$axios.get(Service.siteUrl.sitePersonal, {
+      loadData() {
+        this.$axios.get(Service.blogUrl.blog, {
           params: this.searchForm,
           headers: {
             'Authorization': localStorage.getItem('token')
@@ -244,7 +160,7 @@
             let responseData = res.data;
             if (responseData.code === 0) {
               this.totalCount = responseData.data.allTotal;
-              this.siteData = responseData.data.list;
+              this.blogData = responseData.data.list;
             } else {
               this.$message.error(responseData.msg);
               if (responseData.code === -2) {
@@ -262,7 +178,7 @@
       },
     },
     created() {
-      this.load();
+      this.loadData();
     }
   }
 </script>

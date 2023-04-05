@@ -13,15 +13,15 @@
       </div>
       <div class="headerUser">
         <el-row type="flex" justify="space-around" align="middle">
-          <el-col :span="6">
+          <el-col :span="10">
               <el-link href="/" type="primary">回到首页</el-link>
               <el-divider direction="vertical"></el-divider>
           </el-col>
-          <el-col :span="5">
+          <el-col :span="10">
               <el-link @click="logout" type="primary">退出登录</el-link>
           </el-col>
-          <el-col :span="7">
-            <span>eblog-后台管理</span>
+          <el-col :span="4">
+            <span>{{userCode}}</span>
           </el-col>
         </el-row>
       </div>
@@ -78,7 +78,7 @@
 
   .headerUser {
     float: right;
-    width: 16%;
+    width: 10%;
   }
 
   .headerUser .el-col {

@@ -19,7 +19,7 @@
     <el-divider></el-divider>
     <el-table
         size="medium"
-        :data="blogData"
+        :data="dataList"
         stripe
         style="width: 100%">
       <el-table-column
@@ -80,7 +80,7 @@ export default {
         pageNo: 1,
         pageSize: 10
       },
-      blogData: null
+      dataList: null
     }
   },
   methods: {
@@ -162,7 +162,7 @@ export default {
           let responseData = res.data;
           if (responseData.code === 0) {
             this.totalCount = responseData.data.allTotal;
-            this.blogData = responseData.data.list;
+            this.dataList = responseData.data.list;
           } else {
             this.$message.error(responseData.msg);
             if (responseData.code === -2) {

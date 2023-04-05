@@ -11,7 +11,9 @@
               </a>
             </el-col>
             <el-col :span="22">
-              <el-link :href="item.url" target="_blank" class="el-link">{{ item.title }}
+              <el-link @click="showContent(item.id)" target="_blank" class="el-link">{{
+                  item.title
+                }}
               </el-link>
               <el-tooltip effect="dark" placement="bottom-end" v-if="isMore(item.content)">
                 <div slot="content" v-html="showRemarkTip(item.content)"></div>
@@ -75,6 +77,12 @@ export default {
     },
     showRemarkTip(remark) {
       return remark.replace(/(.{30})/g, "$1<br/>");
+    },
+    showContent(id) {
+      this.$router.push({
+        path: '/blogview',
+        query: {id: id} // 参数传值
+      })
     }
   }
 }

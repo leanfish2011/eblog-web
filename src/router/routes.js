@@ -5,6 +5,7 @@
 // 1、引入各个组件
 import Home from '../components/home/item/Home'
 import Search from '../components/home/item/Search'
+import BlogView from '../components/home/item/BlogView.vue'
 import About from '../components/home/item/About'
 import Login from '../components/home/login/Login'
 import Tool from '../components/home/item/Tool'
@@ -15,6 +16,7 @@ import BlogAdd from '../components/manage/blog/blogadd.vue'
 // 2、设置路由路径
 export default [
   {path: "/", component: Home},
+  {path: "/blogview", component: BlogView},
   {path: "/search", component: Search},
   {path: "/about", component: About},
   {path: "/login", component: Login},

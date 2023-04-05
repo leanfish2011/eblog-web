@@ -92,8 +92,38 @@ export default {
     },
     onClear() {
       this.addModel = Object.assign({}, "");
+    },
+    loadData(id) {
+      this.$axios.get(Service.blogUrl.blog + '/' + id, {
+        headers: {
+          'Authorization': localStorage.getItem('token')
+        }
+      }).then((res) => {
+        if (res.status === 200) {
+          let responseData = res.data;
+          if (responseData.code === 0) {
+            this.addModel.title = responseData.data.title;
+            this.addModel.content = responseData.data.content;
+          } else {
+            this.$message.error(responseData.msg);
+            if (responseData.code === -2) {
+              AuthUtil.clearSession();
 
+              this.$router.push('/login');
+            }
+          }
+        } else {
+          this.$message.error("系统内部错误");
+        }
+      }).catch(function (error) {
+        console.error(error);
+      });
     }
+  },
+  mounted() {
+    let id = this.$route.query.id;
+    this.addModel.id = id;
+    this.loadData(id);
   }
 }
 </script>

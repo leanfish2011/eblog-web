@@ -6,10 +6,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import axios from 'axios'
+import CKEditor from 'ckeditor4-vue';
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(ElementUI);
+Vue.use(CKEditor);
 
 Vue.prototype.$axios = axios;
 

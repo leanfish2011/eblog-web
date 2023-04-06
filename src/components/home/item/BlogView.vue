@@ -4,7 +4,7 @@
     <div class="blogViewContent">
       <p>{{ viewModel.title }}</p>
       <p>发布时间：{{ dateFormat(viewModel.createTime) }}</p>
-      <div>{{ viewModel.content }}</div>
+      <span v-html="viewModel.content"></span>
     </div>
     <bottom-footer></bottom-footer>
   </div>

@@ -29,7 +29,7 @@
       </el-table-column>
       <el-table-column
           prop="content"
-          label="备注">
+          label="内容">
       </el-table-column>
       <el-table-column
           prop="createTime"
@@ -69,7 +69,7 @@ import DateUtil from '../../../utils/dateUtil'
 import AuthUtil from '../../../utils/authUtil'
 
 export default {
-  name: "bloglist",
+  name: "BlogList",
   data() {
     return {
       perSize: 10,

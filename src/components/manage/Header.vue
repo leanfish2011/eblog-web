@@ -14,7 +14,7 @@
       <div class="headerUser">
         <el-row type="flex" justify="space-around" align="middle">
           <el-col :span="10">
-              <el-link href="/" type="primary">回到首页</el-link>
+              <el-link href="/" target="_blank" type="primary">回到首页</el-link>
               <el-divider direction="vertical"></el-divider>
           </el-col>
           <el-col :span="10">

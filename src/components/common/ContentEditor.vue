@@ -9,21 +9,19 @@ export default {
   name: "ContentEditor",
   data() {
     return {
-      editorData: '<p>Content of the editor.</p>',
+      editorData: '<p>请输入内容</p>',
       editorConfig: {
-        width: '50%', // 宽 支持百分比
-        height: 300, // 高 支持 '25em'
+        width: '100%', // 宽 支持百分比
+        height: 600, // 高 支持 '25em'
         // uiColor: '#66AB16', // 编辑器 背景颜色
         // defaultLanguage: '', // 语言
-        editorplaceholder: 'hello', // 输入框提示
-        resize_enabled: false, // 是否可伸缩 高度 或 config.removePlugins = 'resize';
-        // wordCount: true,
+        resize_enabled: true, // 是否可伸缩 高度 或 config.removePlugins = 'resize';
         // 操作栏配置
         toolbar: [
-          // 打印
+          // 源码
           {
             name: 'document',
-            items: ['Source', 'Print'] // Source 源码输入
+            items: ['Source']
           },
           // 撤销 重新编辑
           {
@@ -44,13 +42,10 @@ export default {
             name: 'align',
             items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
           },
-          // 操作栏 是否换行
-          // '/',
           // 文本样式操作 加粗等功能
           {
             name: 'basicstyles',
-            items: ['Bold', 'Italic']
-            // items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting']
+            items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting']
           },
           // 超链接
           {
@@ -65,7 +60,6 @@ export default {
           // 插入 图片 表格
           {
             name: 'insert',
-            // items: ['Table']
             items: ['Image', 'Table']
           },
           // 工具 全屏等功能
@@ -80,10 +74,8 @@ export default {
           }
         ],
         // toolbar 中的一些配置功能 需要在这里添加一下才可以用 例如 print colorbutton
-        extraPlugins: 'print,format,font,colorbutton,justify,uploadimage,notification',
-        // plugins: 'wordcount',
+        extraPlugins: 'format,font,colorbutton,justify,uploadimage,notification',
         format_tags: 'p;h1;h2;h3;h4;h5;h6;pre;address;div', // 格式 标题1 2 3 4 段落等 自定义
-        // colorButton_colors: 'CF5D4E,454545,FFF,DDD,CCEAEE,66AB16', // 自定义 文本 背景颜色列表
       }
     };
   }

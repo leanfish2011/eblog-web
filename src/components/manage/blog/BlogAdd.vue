@@ -101,7 +101,11 @@ export default {
       });
     },
     onClear() {
-      this.addModel = Object.assign({}, "");
+      this.$confirm('确定清空?', '提示', {})
+      .then(() => {
+        this.addModel = Object.assign({}, "");
+        this.$refs.contentEditor.editorData = "";
+      });
     },
     loadData(id) {
       this.$axios.get(Service.blogUrl.blog + '/' + id).then((res) => {

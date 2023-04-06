@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       submiting: false,
+      isAddStyle: false,
       addModel: {
         id: "",
         title: "",
@@ -53,7 +54,7 @@ export default {
 
       this.$refs.addForm.validate((valid) => {
         if (valid) {
-          if (this.addModel.id === "" || this.addModel.id === undefined) {
+          if (this.isAddStyle) {
             this.$axios.post(Service.blogUrl.blog, this.addModel,
                 {
                   headers: {
@@ -128,9 +129,12 @@ export default {
   },
   mounted() {
     let id = this.$route.query.id;
-    this.addModel.id = id;
-
-    this.loadData(id);
+    if (id === null || id === "" || id === undefined) {
+      this.isAddStyle = true;
+    } else {
+      this.addModel.id = id;
+      this.loadData(id);
+    }
   }
 }
 </script>

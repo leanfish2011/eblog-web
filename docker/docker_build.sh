@@ -4,7 +4,7 @@
 
 #!/bin/bash
 
-version="v2.0"
+version="v1.0"
 
 function build_image()
 {

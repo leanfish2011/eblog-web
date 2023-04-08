@@ -6,7 +6,7 @@
 // const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}`;
 
 // debug
-const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}`+':9091';
+const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}` + ':9091';
 
 //2、定义各个模块总的入口
 
@@ -29,8 +29,14 @@ const blogUrl = {
   blog: serviceGate.postService + '/blog'
 };
 
+// 3、file模块接口
+const fileUrl = {
+  file: serviceGate.postService + '/file'
+};
+
 // 对外暴露接口
 export default {
   authUrl,
-  blogUrl
+  blogUrl,
+  fileUrl
 };

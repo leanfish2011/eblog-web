@@ -2,9 +2,9 @@
   <div id="blogView">
     <nav-header></nav-header>
     <div class="blogViewContent">
-      <p>{{ viewModel.title }}</p>
-      <p>发布时间：{{ dateFormat(viewModel.createTime) }}</p>
-      <span v-html="viewModel.content"></span>
+      <p class="title">{{ viewModel.title }}</p>
+      <p class="createTime">发布时间：{{ dateFormat(viewModel.createTime) }}</p>
+      <span class="content" v-html="viewModel.content"></span>
     </div>
     <bottom-footer></bottom-footer>
   </div>
@@ -73,6 +73,19 @@ export default {
   width: 50%;
   min-height: calc(100vh - 186px);
   margin: 5px auto 5px auto;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.createTime {
+
+}
+
+.content {
+
 }
 
 a:link, a:visited {

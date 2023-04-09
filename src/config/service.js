@@ -7,6 +7,7 @@ const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}`;
 
 // debug
 // const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}` + ':9091';
+// 或者连nginx，const ROOT_PATH = 'http://127.0.0.1';
 
 //2、定义各个模块总的入口
 

@@ -28,8 +28,8 @@
           width="180">
       </el-table-column>
       <el-table-column
-          prop="content"
-          label="内容">
+          prop="remark"
+          label="摘要">
       </el-table-column>
       <el-table-column
           prop="createTime"

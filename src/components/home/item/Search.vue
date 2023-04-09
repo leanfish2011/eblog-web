@@ -13,10 +13,10 @@
                   </a>
                 </el-col>
                 <el-col :span="18">
-                  <el-link :href="item.url" target="_blank" style="font-size: 16px;"
+                  <el-link @click="showContent(item.id)" target="_blank" style="font-size: 16px;"
                            v-html="highlight(item.title)">
                   </el-link>
-                  <div class="remark" v-html="highlight(item.content)"></div>
+                  <div class="remark" v-html="item.remark"></div>
                 </el-col>
               </el-row>
             </el-card>
@@ -92,6 +92,12 @@ export default {
       let replaceString = '<span style="color: red;">' + keyword + '</span>';
       // 开始替换
       return content.replace(replaceReg, replaceString);
+    },
+    showContent(id) {
+      this.$router.push({
+        path: '/blogview',
+        query: {id: id} // 参数传值
+      })
     }
   }
 }

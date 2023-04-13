@@ -6,24 +6,11 @@
         <span>Tim's Blog</span>
       </a>
       <ul class="right-list">
-        <li class="list-item">
-          <a href="/" class="item-link active">主页</a>
-        </li>
-        <li class="list-item">
-          <a href="/archives/" class="item-link">归档</a>
-        </li>
-        <li class="list-item">
-          <a href="/project/" class="item-link">项目</a>
-        </li>
-        <li class="list-item">
-          <a href="/atom" class="item-link">订阅</a>
-        </li>
-        <li class="list-item">
-          <a href="/tool" class="item-link">工具</a>
-        </li>
-        <li class="list-item">
-          <a href="/about/" class="item-link">关于</a>
-        </li>
+        <label v-for="item in menuData">
+          <li class="list-item">
+            <router-link :to=item.route exact class="item-link">{{ item.name }}</router-link>
+          </li>
+        </label>
       </ul>
     </div>
   </header>
@@ -31,7 +18,43 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  data() {
+    return {
+      menuData: [
+        {
+          id: "1",
+          name: "主页",
+          route: "/",
+        },
+        {
+          id: "2",
+          name: "归档",
+          route: "/archives",
+        },
+        {
+          id: "3",
+          name: "项目",
+          route: "/project",
+        },
+        {
+          id: "4",
+          name: "订阅",
+          route: "/atom",
+        },
+        {
+          id: "5",
+          name: "工具",
+          route: "/tool",
+        },
+        {
+          id: "6",
+          name: "关于",
+          route: "/about",
+        }
+      ]
+    };
+  }
 }
 </script>
 
@@ -123,7 +146,8 @@ export default {
   border-bottom: 3px solid #ff6700;
 }
 
-.active {
+/*路由激活样式，router自带属性*/
+.router-link-active {
   border-bottom: 3px solid #ff6700;
 }
 </style>

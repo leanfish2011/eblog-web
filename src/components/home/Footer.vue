@@ -1,45 +1,44 @@
 <template>
-  <div>
+  <footer>
     <div class="footer">
-      <div class="rightInfo">
-        <p>Copyright © Tim 2016-{{year}}</p>
-      </div>
+      <p class="copyright">Copyright © Tim 2016-{{ year }}</p>
     </div>
     <el-backtop></el-backtop>
-  </div>
+  </footer>
 </template>
 
 <script>
-  export default {
-    name: "Footer",
-    data() {
-      return {
-        year: ''
-      }
-    },
-    methods: {
-      getYear() {
-        this.year = new Date().getFullYear()
-      }
-    },
-    created() {
-      this.getYear()
+export default {
+  name: "Footer",
+  data() {
+    return {
+      year: ''
     }
+  },
+  methods: {
+    getYear() {
+      this.year = new Date().getFullYear()
+    }
+  },
+  created() {
+    this.getYear()
   }
+}
 </script>
 
 <style scoped>
-  .footer {
-    height: 50px;
-    background-color: #e5e8eb;
-    text-align: center;
-  }
+.footer {
+  padding: 1em 0;
+  margin: 0 auto;
+  max-width: 850px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #fff;
+  text-align: center;
+  font-size: 0.9em;
+}
 
-  .rightInfo {
-    height: 10px;
-    width: 100%;
-    position: relative;
-    top: 30%;
-    color: #41403d;
-  }
+.copyright {
+  color: #7f8c8d;
+  line-height: 1.5;
+}
 </style>

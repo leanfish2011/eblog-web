@@ -1,6 +1,6 @@
 <template>
   <div id="about">
-    <nav-header></nav-header>
+    <top-header></top-header>
     <div class="aboutContent">
       <el-tabs tab-position="left">
         <el-tab-pane label="关于我">
@@ -19,33 +19,33 @@
 </template>
 
 <script>
-  import NavHeader from '../NavHeader'
-  import Footer from '../Footer'
-  import AboutMe from './about/Me'
-  import AboutUpdate from './about/Update'
-  import AboutSite from './about/Site'
+import Header from '../Header'
+import Footer from '../Footer'
+import AboutMe from './about/Me'
+import AboutUpdate from './about/Update'
+import AboutSite from './about/Site'
 
-  export default {
-    name: 'about',
-    components: {
-      "navHeader": NavHeader,
-      "bottomFooter": Footer,
-      "aboutMe": AboutMe,
-      "aboutUpdate": AboutUpdate,
-      "aboutSite": AboutSite
-    }
+export default {
+  name: 'about',
+  components: {
+    "topHeader": Header,
+    "bottomFooter": Footer,
+    "aboutMe": AboutMe,
+    "aboutUpdate": AboutUpdate,
+    "aboutSite": AboutSite
   }
+}
 </script>
 
 <style scoped>
-  #about {
-    width: 100%;
-    margin-top: 120px;
-  }
+#about {
+  width: 100%;
+  margin-top: 80px;
+}
 
-  .aboutContent {
-    width: 50%;
-    min-height: calc(100vh - 186px);
-    margin: 5px auto 5px auto;
-  }
+.aboutContent {
+  width: 50%;
+  min-height: calc(100vh - 186px);
+  margin: 5px auto 5px auto;
+}
 </style>

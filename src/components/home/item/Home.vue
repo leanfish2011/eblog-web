@@ -1,44 +1,34 @@
 <template>
   <div id="home">
-    <nav-header></nav-header>
-    <div class="homeContent">
+    <top-header></top-header>
+    <main class="app-body">
       <label v-for="item in dataList" :key="item.id">
-        <el-card shadow="hover" class="siteCard">
-          <el-row>
-            <el-col :span="2">
-              <a :href=item.url target="_blank">
-                <img class="siteIcon" :src="queryIcon(item.iconUrl)"/>
-              </a>
-            </el-col>
-            <el-col :span="22">
-              <el-link @click="showContent(item.id)" target="_blank" class="el-link">{{
-                  item.title
-                }}
-              </el-link>
-              <el-tooltip effect="dark" placement="bottom-end" v-if="isMore(item.remark)">
-                <div slot="content" v-html="showRemarkTip(item.remark)"></div>
-                <div class="remark">{{ cutRemark(item.remark) }}</div>
-              </el-tooltip>
-              <div class="remark" v-else>{{ item.remark }}</div>
-            </el-col>
-          </el-row>
-        </el-card>
+        <article class="article-card">
+          <h2 class="article-head">
+            <a @click="showContent(item.id)">{{ item.title }}</a>
+          </h2>
+          <p class="article-date">{{ dateFormat(item.createTime) }}</p>
+          <div class="article-summary">
+            {{ item.remark }}
+          </div>
+          <a class="more" @click="showContent(item.id)">阅读更多</a>
+        </article>
       </label>
-    </div>
+    </main>
     <bottom-footer></bottom-footer>
   </div>
 </template>
 
 <script>
-import NavHeader from '../NavHeader'
-import Service from '../../../config/service'
+import Header from '../Header'
 import Footer from '../Footer'
+import Service from '../../../config/service'
+import DateUtil from '../../../utils/dateUtil'
 
-let remarkLength = 60;
 export default {
   name: 'home',
   components: {
-    "navHeader": NavHeader,
+    "topHeader": Header,
     "bottomFooter": Footer
   },
   data() {
@@ -58,31 +48,15 @@ export default {
     });
   },
   methods: {
-    queryIcon(url) {
-      if (url == null || url == "") {
-        return "../../../../static/eblog.ico";
-      }
-
-      return url;
-    },
-    isMore(remark) {
-      if (remark != null && remark.length > remarkLength) {
-        return true;
-      }
-
-      return false;
-    },
-    cutRemark(remark) {
-      return remark.slice(0, remarkLength);
-    },
-    showRemarkTip(remark) {
-      return remark.replace(/(.{30})/g, "$1<br/>");
-    },
     showContent(id) {
       this.$router.push({
         path: '/blogview',
         query: {id: id} // 参数传值
       })
+    },
+    //时间格式化
+    dateFormat(createTime) {
+      return DateUtil.dateFormat(createTime);
     }
   }
 }
@@ -91,40 +65,58 @@ export default {
 <style scoped>
 #home {
   width: 100%;
-  margin-top: 120px;
+  margin-top: 20px;
 }
 
-.homeContent {
-  width: 50%;
-  min-height: calc(100vh - 186px);
-  margin: 5px auto 5px auto;
+.app-body {
+  padding: 2em 1em;
+  margin: 0 auto;
+  height: 100%;
+  max-width: 980px;
+  position: relative;
+  transform: translateY(-20px);
+  transition: all 0.4s;
 }
 
-.siteCard {
-  height: 80px;
-  margin-top: 5px;
+.article-card {
+  padding-bottom: 5px;
 }
 
-.siteIcon {
-  width: 50%;
-  height: 50%;
+.article-card:first-child {
+  margin-top: 50px;
 }
 
-.remark {
-  font-size: 14px;
+h2.article-head {
+  font-size: 1.6em;
+  margin-bottom: 0;
 }
 
-.el-link {
-  font-size: 16px;
+.article-head > a {
+  color: #34495e;
 }
 
-a:link, a:visited {
-  text-decoration: none;
-  color: #2f65ca
+.article-head > a:hover {
+  border-bottom: 2px solid #ff6700;
 }
 
-/* 已访问的链接 */
-a:hover {
-  color: #5c31ff
+.article-date {
+  color: #7f8c8d;
+  margin: 10px 0;
+  font-size: 0.9em;
+}
+
+.article-summary {
+  margin: 10px 0;
+  color: #34495e;
+}
+
+.more {
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+.more:hover {
+  transform: translateX(10px);
 }
 </style>

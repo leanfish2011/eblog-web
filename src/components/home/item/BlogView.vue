@@ -1,6 +1,6 @@
 <template>
   <div id="blogView">
-    <nav-header></nav-header>
+    <top-header></top-header>
     <div class="blogViewContent">
       <p class="title">{{ viewModel.title }}</p>
       <p class="createTime">发布时间：{{ dateFormat(viewModel.createTime) }}</p>
@@ -11,15 +11,15 @@
 </template>
 
 <script>
-import NavHeader from '../NavHeader'
-import Service from '../../../config/service'
+import Header from '../Header'
 import Footer from '../Footer'
-import DateUtil from "../../../utils/dateUtil";
+import Service from '../../../config/service'
+import DateUtil from '../../../utils/dateUtil'
 
 export default {
   name: 'blogView',
   components: {
-    "navHeader": NavHeader,
+    "topHeader": Header,
     "bottomFooter": Footer
   },
   data() {
@@ -66,7 +66,7 @@ export default {
 <style scoped>
 #blogView {
   width: 100%;
-  margin-top: 120px;
+  margin-top: 80px;
 }
 
 .blogViewContent {

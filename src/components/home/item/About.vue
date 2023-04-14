@@ -6,7 +6,7 @@
         <el-tab-pane label="关于我">
           <about-me></about-me>
         </el-tab-pane>
-        <el-tab-pane label="关于网站">
+        <el-tab-pane label="关于博客">
           <about-site></about-site>
         </el-tab-pane>
         <el-tab-pane label="更新日志">

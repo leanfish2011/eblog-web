@@ -30,7 +30,7 @@ export default {
 .footer {
   padding: 1em 0;
   margin: 0 auto;
-  max-width: 850px;
+  max-width: 800px;
   border-top: 1px solid #e5e5e5;
   background-color: #fff;
   text-align: center;
@@ -39,6 +39,6 @@ export default {
 
 .copyright {
   color: #7f8c8d;
-  line-height: 1.5;
+  line-height: 1;
 }
 </style>

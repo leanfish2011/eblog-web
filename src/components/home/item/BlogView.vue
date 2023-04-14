@@ -2,9 +2,9 @@
   <div id="blogView">
     <top-header></top-header>
     <div class="blogViewContent">
-      <p class="title">{{ viewModel.title }}</p>
-      <p class="createTime">发布时间：{{ dateFormat(viewModel.createTime) }}</p>
-      <span class="content" v-html="viewModel.content"></span>
+      <h2 class="title">{{ viewModel.title }}</h2>
+      <p class="createTime">发布于：{{ dateFormat(viewModel.createTime) }}</p>
+      <div class="content" v-html="viewModel.content"></div>
     </div>
     <bottom-footer></bottom-footer>
   </div>
@@ -76,16 +76,16 @@ export default {
 }
 
 .title {
-  font-weight: 500;
-  font-size: 20px;
+  font-size: 1.6em;
+  margin-bottom: 0;
 }
 
 .createTime {
-
+  font-size: 0.8em;
 }
 
 .content {
-
+  border-top: 1px solid #e5e5e5;
 }
 
 a:link, a:visited {

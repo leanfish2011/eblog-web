@@ -39,16 +39,11 @@ export default {
         },
         {
           id: "4",
-          name: "订阅",
-          route: "/atom",
-        },
-        {
-          id: "5",
           name: "工具",
           route: "/tool",
         },
         {
-          id: "6",
+          id: "5",
           name: "关于",
           route: "/about",
         }

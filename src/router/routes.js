@@ -8,6 +8,7 @@ import BlogView from '../components/home/item/BlogView.vue'
 import About from '../components/home/item/About'
 import Login from '../components/home/login/Login'
 import Tool from '../components/home/item/Tool'
+import Project from '../components/home/item/Project.vue'
 import Manage from '../components/manage/Manage'
 import BlogList from '../components/manage/blog/BlogList.vue'
 import BlogAdd from '../components/manage/blog/BlogAdd.vue'
@@ -19,6 +20,7 @@ export default [
   {path: "/about", component: About},
   {path: "/login", component: Login},
   {path: "/tool", component: Tool},
+  {path: "/project", component: Project},
   {
     path: "/manage",
     component: Manage,

@@ -68,16 +68,6 @@ export default {
   margin-top: 20px;
 }
 
-.app-body {
-  padding: 2em 1em;
-  margin: 0 auto;
-  height: 100%;
-  max-width: 980px;
-  position: relative;
-  transform: translateY(-20px);
-  transition: all 0.4s;
-}
-
 .article-card {
   padding-bottom: 5px;
 }

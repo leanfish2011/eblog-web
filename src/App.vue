@@ -47,6 +47,16 @@ body {
   font-size: 16px;
 }
 
+.app-body {
+  padding: 2em 1em;
+  margin: 0 auto;
+  height: 100%;
+  max-width: 980px;
+  position: relative;
+  transform: translateY(-20px);
+  transition: all 0.4s;
+}
+
 @media screen and (max-width: 480px) {
   body {
     font-size: 15px;

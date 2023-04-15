@@ -30,6 +30,11 @@
       <el-table-column
           prop="arrayTag"
           label="标签">
+        <template slot-scope="scope">
+          <span v-for="(item,index) in scope.row.arrayTag" :key="index">
+            {{ item }},
+          </span>
+        </template>
       </el-table-column>
       <el-table-column
           prop="remark"

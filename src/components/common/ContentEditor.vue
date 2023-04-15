@@ -1,4 +1,3 @@
-<script src="../../config/service.js"></script>
 <template>
   <div id="editor">
     <ckeditor ref="refCKEditor"

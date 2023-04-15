@@ -11,8 +11,11 @@
       <el-form-item label="标题" prop="title">
         <el-input v-model="addModel.title" placeholder="请输入标题"></el-input>
       </el-form-item>
+      <el-form-item label="标签" prop="arrayTag">
+        <tag-editor ref="blogTagEditor"></tag-editor>
+      </el-form-item>
       <el-form-item label="内容" prop="content">
-        <content-editor ref="contentEditor"></content-editor>
+        <content-editor ref="blogContentEditor"></content-editor>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit" :loading="submiting">确定</el-button>
@@ -26,11 +29,13 @@
 import Service from '../../../config/service'
 import AuthUtil from '../../../utils/authUtil'
 import ContentEditor from "../../common/ContentEditor.vue";
+import TagEditor from "../../common/TagEditor.vue";
 
 export default {
   name: "BlogAdd",
   components: {
     "contentEditor": ContentEditor,
+    "tagEditor": TagEditor
   },
   data() {
     return {
@@ -39,6 +44,7 @@ export default {
       addModel: {
         id: "",
         title: "",
+        arrayTag: "",
         content: ""
       },
       validRule: {
@@ -50,7 +56,8 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      this.addModel.content = this.$refs.contentEditor.editorData;
+      this.addModel.content = this.$refs.blogContentEditor.editorData;
+      this.addModel.arrayTag = this.$refs.blogTagEditor.dynamicTags;
 
       this.$refs.addForm.validate((valid) => {
         if (valid) {
@@ -105,7 +112,8 @@ export default {
       this.$confirm('确定清空?', '提示', {})
       .then(() => {
         this.addModel = Object.assign({}, "");
-        this.$refs.contentEditor.editorData = "";
+        this.$refs.blogContentEditor.editorData = "";
+        this.$refs.blogTagEditor.dynamicTags = "";
       });
     },
     loadData(id) {
@@ -115,7 +123,10 @@ export default {
           if (responseData.code === 0) {
             this.addModel.title = responseData.data.title;
             this.addModel.content = responseData.data.content;
-            this.$refs.contentEditor.editorData = this.addModel.content;
+            this.addModel.arrayTag = responseData.data.arrayTag;
+
+            this.$refs.blogContentEditor.editorData = this.addModel.content;
+            this.$refs.blogTagEditor.dynamicTags = this.addModel.arrayTag;
           } else {
             this.$message.error(responseData.msg);
           }

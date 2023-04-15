@@ -28,6 +28,10 @@
           width="180">
       </el-table-column>
       <el-table-column
+          prop="arrayTag"
+          label="标签">
+      </el-table-column>
+      <el-table-column
           prop="remark"
           label="摘要">
       </el-table-column>

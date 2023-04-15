@@ -6,12 +6,13 @@
         <label v-for="item in projectList" :key="item.id">
           <section class="project-card">
             <a class="card-wrap" :href=item.html_url target="_blank">
-              <div class="card-header" :data-name=item.name></div>
+              <div class="card-header" :data-name=item.name
+                   :style="{backgroundColor: item['background-color'] }"></div>
               <h3 class="card-title">{{ item.name }}</h3>
               <p class="card-description">{{ item.description }}</p>
               <div class="card-footer">
-                <span><i class="fa fa-star"></i>{{ item.stargazers_count }}</span>
-                <span><i class="fa fa-code-fork"></i>{{ item.forks_count }}</span>
+                <span><i class="fa"></i>&#9734&nbsp;{{ item.stargazers_count }}</span>
+                <span><i class="fa"></i>&#936&nbsp;{{ item.forks_count }}</span>
               </div>
             </a>
           </section>
@@ -38,26 +39,29 @@ export default {
         {
           "id": "0",
           "name": "WebPhotoshop",
-          "html_url": "https://leanfish2011.github.io/WebPhotoshop-Simple/",
-          "description": "在线绘图工具。由作者本人研发",
-          "stargazers_count": 20,
-          "forks_count": 10
+          "html_url": "https://github.com/leanfish2011/WebPhotoshop-Simple",
+          "description": "HTML5实现的图形图像处理平台，可进行：图形绘制、图像处理、图像操作",
+          "stargazers_count": 108,
+          "forks_count": 59,
+          "background-color": "#5daf34"
         },
         {
           "id": "1",
-          "name": "WebPhotoshop11",
-          "html_url": "https://leanfish2011.github.io/WebPhotoshop-Simple/",
-          "description": "在线绘图工具。由作者本人研发",
-          "stargazers_count": 24,
-          "forks_count": 10
+          "name": "MyEcharts",
+          "html_url": "https://github.com/leanfish2011/MyEcharts",
+          "description": "对Echarts的封装，使用更加方便",
+          "stargazers_count": 18,
+          "forks_count": 9,
+          "background-color": "#2a239a"
         },
         {
           "id": "2",
-          "name": "WebPhotoshop222",
-          "html_url": "https://leanfish2011.github.io/WebPhotoshop-Simple/",
-          "description": "在线绘图工具。由作者本人研发",
-          "stargazers_count": 40,
-          "forks_count": 40
+          "name": "爱收藏",
+          "html_url": "https://leanfish2011.github.io/ishou-resource",
+          "description": "一个用于收藏网址的平台",
+          "stargazers_count": 0,
+          "forks_count": 0,
+          "background-color": "#830973"
         }
       ]
     }
@@ -133,7 +137,7 @@ export default {
 .card-container .project-card .card-wrap .card-title {
   margin-top: 10px;
   margin-bottom: 5px;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .card-container .project-card .card-wrap .card-footer {

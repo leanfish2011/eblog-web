@@ -1,6 +1,5 @@
 <template>
   <label>
-    <h2>更新日志</h2>
     <el-timeline>
       <el-timeline-item
           v-for="(activity, index) in activities"

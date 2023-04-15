@@ -1,6 +1,5 @@
 <template>
   <label>
-    <h2>关于我</h2>
     <h4>简介：</h4>
     <ul>
       <li>

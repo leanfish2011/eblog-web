@@ -28,7 +28,8 @@ const authUrl = {
 
 // 2、blog模块接口
 const blogUrl = {
-  blog: serviceGate.postService + '/blog'
+  blog: serviceGate.postService + '/blog',
+  archive: serviceGate.postService + '/blog/archive'
 };
 
 // 3、file模块接口

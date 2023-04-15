@@ -17,7 +17,7 @@ import Service from '../../../config/service'
 import DateUtil from '../../../utils/dateUtil'
 
 export default {
-  name: 'blogView',
+  name: 'BlogView',
   components: {
     "topHeader": Header,
     "bottomFooter": Footer

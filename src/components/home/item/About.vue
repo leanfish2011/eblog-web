@@ -26,7 +26,7 @@ import AboutUpdate from './about/Update'
 import AboutSite from './about/Site'
 
 export default {
-  name: 'about',
+  name: 'About',
   components: {
     "topHeader": Header,
     "bottomFooter": Footer,

@@ -30,7 +30,7 @@ export default {
         {
           id: "2",
           name: "归档",
-          route: "/archives",
+          route: "/archive",
         },
         {
           id: "3",

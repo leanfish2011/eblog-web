@@ -25,7 +25,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 
 export default {
-  name: "tool",
+  name: "Tool",
   components: {
     "topHeader": Header,
     "bottomFooter": Footer

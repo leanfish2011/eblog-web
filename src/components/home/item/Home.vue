@@ -39,7 +39,7 @@ import Service from '../../../config/service'
 import DateUtil from '../../../utils/dateUtil'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     "topHeader": Header,
     "bottomFooter": Footer

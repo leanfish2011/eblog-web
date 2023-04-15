@@ -4,14 +4,15 @@
 
 // 1、引入各个组件
 import Home from '../components/home/item/Home'
-import BlogView from '../components/home/item/BlogView.vue'
+import BlogView from '../components/home/item/BlogView'
 import About from '../components/home/item/About'
 import Login from '../components/home/login/Login'
 import Tool from '../components/home/item/Tool'
-import Project from '../components/home/item/Project.vue'
+import Project from '../components/home/item/Project'
+import Archive from "../components/home/item/Archive";
 import Manage from '../components/manage/Manage'
-import BlogList from '../components/manage/blog/BlogList.vue'
-import BlogAdd from '../components/manage/blog/BlogAdd.vue'
+import BlogList from '../components/manage/blog/BlogList'
+import BlogAdd from '../components/manage/blog/BlogAdd'
 
 // 2、设置路由路径
 export default [
@@ -21,6 +22,7 @@ export default [
   {path: "/login", component: Login},
   {path: "/tool", component: Tool},
   {path: "/project", component: Project},
+  {path: "/archive", component: Archive},
   {
     path: "/manage",
     component: Manage,

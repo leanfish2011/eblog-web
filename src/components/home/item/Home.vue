@@ -36,21 +36,37 @@ export default {
   },
   data() {
     return {
-      dataList: null
+      dataList: null,
+      totalCount: 0,
+      searchForm: {
+        pageNo: 1,
+        pageSize: 10
+      },
     }
   },
   created() {
-    this.$axios.get(Service.blogUrl.blog).then((res) => {
-      if (res.status === 200) {
-        this.dataList = res.data.data.list;
-      } else {
-        this.$message.error("系统内部错误");
-      }
-    }).catch(function (error) {
-      console.error(error);
-    });
+    this.getList();
   },
   methods: {
+    getList() {
+      this.$axios.get(Service.blogUrl.blog, {
+        params: this.searchForm
+      }).then((res) => {
+        if (res.status === 200) {
+          let responseData = res.data;
+          if (responseData.code === 0) {
+            this.totalCount = responseData.data.allTotal;
+            this.dataList = responseData.data.list;
+          } else {
+            this.$message.error(responseData.msg);
+          }
+        } else {
+          this.$message.error("系统内部错误");
+        }
+      }).catch(function (error) {
+        console.error(error);
+      });
+    },
     showContent(id) {
       this.$router.push({
         path: '/blogview',

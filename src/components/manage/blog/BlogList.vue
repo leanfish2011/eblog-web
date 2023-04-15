@@ -82,7 +82,7 @@ export default {
   data() {
     return {
       perSize: 10,
-      totalCount: 1,
+      totalCount: 0,
       currentPage: 1,
       searchForm: {
         title: null,
@@ -162,10 +162,7 @@ export default {
     },
     loadData() {
       this.$axios.get(Service.blogUrl.blog, {
-        params: this.searchForm,
-        headers: {
-          'Authorization': localStorage.getItem('token')
-        }
+        params: this.searchForm
       }).then((res) => {
         if (res.status === 200) {
           let responseData = res.data;
@@ -174,11 +171,6 @@ export default {
             this.dataList = responseData.data.list;
           } else {
             this.$message.error(responseData.msg);
-            if (responseData.code === -2) {
-              AuthUtil.clearSession();
-
-              this.$router.push('/login');
-            }
           }
         } else {
           this.$message.error("系统内部错误");

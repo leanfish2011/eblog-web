@@ -17,6 +17,16 @@
           <a class="more" @click="showContent(item.id)">阅读更多</a>
         </article>
       </label>
+      <div class="list-page">
+        <el-pagination
+            ref="page"
+            @current-change="handleCurrentChange"
+            background
+            :current-page="currentPage"
+            layout="prev,pager,next"
+            :total="totalCount">
+        </el-pagination>
+      </div>
     </main>
     <bottom-footer></bottom-footer>
   </div>
@@ -38,6 +48,7 @@ export default {
     return {
       dataList: null,
       totalCount: 0,
+      currentPage: 1,
       searchForm: {
         pageNo: 1,
         pageSize: 10
@@ -49,6 +60,8 @@ export default {
   },
   methods: {
     getList() {
+      this.searchForm.pageNo = this.currentPage;
+
       this.$axios.get(Service.blogUrl.blog, {
         params: this.searchForm
       }).then((res) => {
@@ -66,6 +79,10 @@ export default {
       }).catch(function (error) {
         console.error(error);
       });
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
+      this.getList();
     },
     showContent(id) {
       this.$router.push({
@@ -88,11 +105,11 @@ export default {
 }
 
 .article-card {
-  padding-bottom: 5px;
+  padding-bottom: 2px;
 }
 
 .article-card:first-child {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 h2.article-head {
@@ -139,5 +156,9 @@ h2.article-head {
 
 .more:hover {
   transform: translateX(10px);
+}
+
+.list-page{
+  margin: 30px 0;
 }
 </style>

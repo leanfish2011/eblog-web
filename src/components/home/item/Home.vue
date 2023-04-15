@@ -8,6 +8,9 @@
             <a @click="showContent(item.id)">{{ item.title }}</a>
           </h2>
           <p class="article-date">{{ dateFormat(item.createTime) }}</p>
+          <label v-for="tag in item.arrayTag">
+            <span class="tag-code">{{ tag }}</span>
+          </label>
           <div class="article-summary">
             {{ item.remark }}
           </div>
@@ -98,6 +101,18 @@ h2.article-head {
 .article-summary {
   margin: 10px 0;
   color: #34495e;
+}
+
+.tag-code {
+  font-family: 'Roboto Mono', Monaco, courier, monospace;
+  font-size: 0.8em;
+  display: inline-block;
+  background-color: #f8f8f8;
+  color: #e96900;
+  padding: 3px 5px;
+  margin: 0 2px 5px 0;
+  border-radius: 2px;
+  white-space: nowrap;
 }
 
 .more {

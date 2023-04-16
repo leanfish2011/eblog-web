@@ -67,7 +67,6 @@ export default {
 
 .viewContent {
   padding: 10px;
-  /*height: calc(100vh - 60px);*/
 }
 
 </style>

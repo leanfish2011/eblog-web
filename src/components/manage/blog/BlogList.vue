@@ -8,7 +8,7 @@
     <el-form ref="form" :inline="true" :model="searchForm" label-width="80px" size="small">
       <el-form-item label="标题">
         <el-input v-model="searchForm.title"
-                  placeholder="标题"
+                  placeholder="按照标题查询"
                   clearable
                   style="width: 500px;"
                   maxlength="50"

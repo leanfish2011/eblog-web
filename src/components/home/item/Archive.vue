@@ -4,7 +4,8 @@
     <main class="app-body" id="archives">
       <label v-for="item in archiveSumList">
         <section class="time-section">
-          <h1 class="section-year" @click="getArchiveList(item.year)">
+          <h1 class="section-year" :class="disableList['disable-'+item.year]?'click-disable':''"
+              @click="getArchiveList(item.year)">
             {{ item.year }}<span class="count">（{{ item.count }}篇）</span>
           </h1>
           <div class="section-list">
@@ -36,7 +37,8 @@ export default {
   data() {
     return {
       archiveSumList: null,
-      archiveList: {}
+      archiveList: {},
+      disableList: {}
     }
   },
   created() {
@@ -75,6 +77,9 @@ export default {
       }).catch(function (error) {
         console.error(error);
       });
+
+      //点击一次后不可再点击
+      this.$set(this.disableList, 'disable-' + year, true);
     },
     showContent(id) {
       this.$router.push({
@@ -162,5 +167,9 @@ export default {
 .count {
   color: #7f8c8d;
   font-size: 0.5em;
+}
+
+.click-disable {
+  pointer-events: none;
 }
 </style>

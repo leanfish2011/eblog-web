@@ -3,10 +3,10 @@
  */
 
 //1、获取当前网页IP，或者指定IP
-//const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}`;
+const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}`;
 
 // debug
-const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}` + ':9091';
+//const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}` + ':9091';
 // 或者连nginx，
 // const ROOT_PATH = 'http://112.74.40.65';
 

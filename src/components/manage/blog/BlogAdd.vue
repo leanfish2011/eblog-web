@@ -28,8 +28,8 @@
 <script>
 import Service from '../../../config/service'
 import AuthUtil from '../../../utils/authUtil'
-import ContentEditor from "../../common/ContentEditor.vue";
-import TagEditor from "../../common/TagEditor.vue";
+import ContentEditor from "../../common/ContentEditor";
+import TagEditor from "../../common/TagEditor";
 
 export default {
   name: "BlogAdd",

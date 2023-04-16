@@ -12,9 +12,6 @@
       <el-form-item>
         <el-button type="primary" @click="onSearch">查询</el-button>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onAddShow">创建</el-button>
-      </el-form-item>
     </el-form>
     <el-divider></el-divider>
     <el-table
@@ -110,9 +107,6 @@ export default {
     handleSizeChange(val) {
       this.perSize = val;
       this.onSearch();
-    },
-    onAddShow() {
-      this.$router.push('/blogadd');
     },
     handleEdit(index, row) {
       this.$router.push({

@@ -1,19 +1,13 @@
 <template>
   <div class="mange">
     <el-container class="manageContent">
-      <el-header class="manageHeader">
-        <manage-header></manage-header>
-      </el-header>
+      <el-aside width="">
+        <manage-aside></manage-aside>
+      </el-aside>
 
-      <el-container>
-        <el-aside>
-          <manage-aside></manage-aside>
-        </el-aside>
-
-        <el-main class="viewContent">
-          <router-view/>
-        </el-main>
-      </el-container>
+      <el-main class="viewContent">
+        <router-view/>
+      </el-main>
     </el-container>
   </div>
 </template>
@@ -21,13 +15,11 @@
 <script>
 import Service from '../../config/service'
 import AuthUtil from '../../utils/authUtil'
-import ManageHeader from './Header'
 import ManageAside from './Aside'
 
 export default {
   name: 'Manage',
   components: {
-    "manageHeader": ManageHeader,
     "manageAside": ManageAside,
   },
   methods: {
@@ -69,25 +61,13 @@ export default {
   height: 100%;
 }
 
-.manageHeader {
-  background-color: #2d3a4e;
-  color: #8b8626;
-  line-height: 60px;
-  font-size: 12px;
-  height: 60px !important;
-}
-
 .manageContent {
   height: 100vh;
 }
 
-.el-aside {
-  height: calc(100vh - 60px);
-}
-
 .viewContent {
   padding: 10px;
-  height: calc(100vh - 60px);
+  /*height: calc(100vh - 60px);*/
 }
 
 </style>

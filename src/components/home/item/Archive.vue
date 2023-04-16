@@ -5,10 +5,10 @@
       <label v-for="item in archiveSumList">
         <section class="time-section">
           <h1 class="section-year" @click="getArchiveList(item.year)">
-            {{ item.year }} - {{ item.count }}
+            {{ item.year }}<span class="count">（{{ item.count }}篇）</span>
           </h1>
           <div class="section-list">
-            <label v-for="archive in archiveList">
+            <label v-for="archive in archiveList['archiveList-'+item.year]">
               <div class="section-list-item">
                 <a @click="showContent(archive.id)" class="archive-title">{{ archive.title }}</a>
                 <p class="archive-date">{{ archive.date }}</p>
@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       archiveSumList: null,
-      archiveList: null
+      archiveList: {}
     }
   },
   created() {
@@ -64,7 +64,8 @@ export default {
         if (res.status === 200) {
           let responseData = res.data;
           if (responseData.code === 0) {
-            this.archiveList = responseData.data.archiveList;
+            let archiveListYear = responseData.data.archiveList;
+            this.$set(this.archiveList, 'archiveList-' + year, archiveListYear)
           } else {
             this.$message.error(responseData.msg);
           }
@@ -156,5 +157,10 @@ export default {
   color: #7f8c8d;
   font-size: 0.9em;
   margin: 5px 0;
+}
+
+.count {
+  color: #7f8c8d;
+  font-size: 0.5em;
 }
 </style>

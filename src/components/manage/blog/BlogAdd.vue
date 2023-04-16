@@ -16,6 +16,7 @@
                   maxlength="100"
                   show-word-limit
                   size="medium"></el-input>
+        <el-tag type="success" effect="dark">{{ isAddStyle ? '新建模式' : '编辑模式' }}</el-tag>
       </el-form-item>
       <el-form-item label="标签" prop="arrayTag">
         <tag-editor ref="blogTagEditor"></tag-editor>
@@ -179,6 +180,7 @@ export default {
       if (blogModeObj != null) {
         let blogMode = JSON.parse(blogModeObj);
         let storeId = blogMode.id;
+        //新建或者编辑的是上次那个博客才恢复
         if (this.isAddStyle || storeId === this.addModel.id) {
           this.$confirm('是否恢复上次内容?', '提示', {
             type: 'warning'

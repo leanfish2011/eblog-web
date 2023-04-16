@@ -2,14 +2,20 @@
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item>后台管理</el-breadcrumb-item>
-      <el-breadcrumb-item>博客管理</el-breadcrumb-item>
+      <el-breadcrumb-item>博客发布</el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider></el-divider>
     <el-form ref="addForm" :model="addModel" label-width="60px" :rules="validRule"
              status-icon
-             class="add-page">
+             class="add-page" size="small">
       <el-form-item label="标题" prop="title">
-        <el-input v-model="addModel.title" placeholder="请输入标题"></el-input>
+        <el-input v-model="addModel.title"
+                  placeholder="请输入标题"
+                  clearable
+                  style="width: 800px;"
+                  maxlength="100"
+                  show-word-limit
+                  size="medium"></el-input>
       </el-form-item>
       <el-form-item label="标签" prop="arrayTag">
         <tag-editor ref="blogTagEditor"></tag-editor>

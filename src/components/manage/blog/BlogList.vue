@@ -5,9 +5,14 @@
       <el-breadcrumb-item>博客列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider></el-divider>
-    <el-form ref="form" :inline="true" :model="searchForm" label-width="80px" size="mini">
+    <el-form ref="form" :inline="true" :model="searchForm" label-width="80px" size="small">
       <el-form-item label="标题">
-        <el-input v-model="searchForm.title" placeholder="标题" clearable></el-input>
+        <el-input v-model="searchForm.title"
+                  placeholder="标题"
+                  clearable
+                  style="width: 500px;"
+                  maxlength="50"
+                  show-word-limit></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSearch">查询</el-button>

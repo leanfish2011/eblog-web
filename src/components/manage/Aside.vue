@@ -1,8 +1,10 @@
 <template>
   <div class="asideMenu">
-    <el-menu background-color="#324157"
-             text-color="#bfcbd9" active-text-color="#20a0ff" default-active="/bloglist"
-             :collapse="isCollapse" :router="true">
+    <el-menu text-color="#bfcbd9"
+             active-text-color="#20a0ff"
+             default-active="/bloglist"
+             :collapse="isCollapse"
+             :router="true">
       <el-menu-item disabled>
         <i class="el-icon-user-solid"></i>
         <span slot="title">{{ userCode }}</span>
@@ -71,6 +73,6 @@ export default {
 
 .el-menu {
   height: 100%;
-  background-color: #324157;
+  background-color: #dbdde0;
 }
 </style>

@@ -25,7 +25,8 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit" :loading="submiting">确定</el-button>
-        <el-button @click="onClear">清空</el-button>
+        <el-button @click="saveTmp" type="warning">暂存</el-button>
+        <el-button @click="onClear" type="danger">清空</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -34,6 +35,7 @@
 <script>
 import Service from '../../../config/service'
 import AuthUtil from '../../../utils/authUtil'
+import BlogTmpUtil from "../../../utils/blogTmpUtil";
 import ContentEditor from "../../common/ContentEditor";
 import TagEditor from "../../common/TagEditor";
 
@@ -81,12 +83,15 @@ export default {
                 } else {
                   this.$message.error(responseData.msg);
                   if (responseData.code === -2) {
+                    this.saveTmp();
+
                     AuthUtil.clearSession();
                     this.$router.push('/login');
                   }
                 }
               } else {
                 this.$message.error("系统内部错误");
+                this.saveTmp();
               }
             })
           } else {
@@ -102,11 +107,15 @@ export default {
                 } else {
                   this.$message.error(responseData.msg);
                   if (responseData.code === -2) {
+                    this.saveTmp();
+
                     AuthUtil.clearSession();
                     this.$router.push('/login');
                   }
                 }
               } else {
+                this.saveTmp();
+
                 this.$message.error("系统内部错误");
               }
             })
@@ -115,12 +124,20 @@ export default {
       });
     },
     onClear() {
-      this.$confirm('确定清空?', '提示', {})
-      .then(() => {
+      this.$confirm('将清空当前编辑内容，确定?', '提示', {
+        type: 'warning'
+      }).then(() => {
         this.addModel = Object.assign({}, "");
         this.$refs.blogContentEditor.editorData = "";
         this.$refs.blogTagEditor.dynamicTags = "";
-      });
+      }).catch(
+          () => {
+            this.$message({
+              type: 'info',
+              message: '已取消'
+            });
+          }
+      );
     },
     loadData(id) {
       this.$axios.get(Service.blogUrl.blog + '/' + id).then((res) => {
@@ -151,10 +168,46 @@ export default {
         this.addModel.id = id;
         this.loadData(id);
       }
+    },
+    saveTmp() {
+      this.addModel.content = this.$refs.blogContentEditor.editorData;
+      this.addModel.arrayTag = this.$refs.blogTagEditor.dynamicTags;
+      BlogTmpUtil.saveBlogTmp(JSON.stringify(this.addModel));
+    },
+    restoreTmp() {
+      let blogModeObj = BlogTmpUtil.getBlogTmp();
+      if (blogModeObj != null) {
+        let blogMode = JSON.parse(blogModeObj);
+        let storeId = blogMode.id;
+        if (this.isAddStyle || storeId === this.addModel.id) {
+          this.$confirm('是否恢复上次内容?', '提示', {
+            type: 'warning'
+          }).then(() => {
+            this.addModel.id = storeId;
+            this.addModel.title = blogMode.title;
+            this.addModel.content = blogMode.content;
+            this.addModel.arrayTag = blogMode.arrayTag;
+
+            this.$refs.blogContentEditor.editorData = this.addModel.content;
+            this.$refs.blogTagEditor.dynamicTags = this.addModel.arrayTag;
+          }).catch(
+              () => {
+                this.$message({
+                  type: 'info',
+                  message: '已取消'
+                });
+
+                BlogTmpUtil.clearBlogTmp();
+              }
+          );
+
+        }
+      }
     }
   },
   mounted() {
     this.getPathData();
+    this.restoreTmp();
   }
 }
 </script>

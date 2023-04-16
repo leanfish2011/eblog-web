@@ -142,16 +142,19 @@ export default {
       }).catch(function (error) {
         console.error(error);
       });
+    },
+    getPathData() {
+      let id = this.$route.query.id;
+      if (id === null || id === "" || id === undefined) {
+        this.isAddStyle = true;
+      } else {
+        this.addModel.id = id;
+        this.loadData(id);
+      }
     }
   },
   mounted() {
-    let id = this.$route.query.id;
-    if (id === null || id === "" || id === undefined) {
-      this.isAddStyle = true;
-    } else {
-      this.addModel.id = id;
-      this.loadData(id);
-    }
+    this.getPathData();
   }
 }
 </script>

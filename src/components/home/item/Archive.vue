@@ -4,17 +4,17 @@
     <main class="app-body" id="archives">
       <label v-for="item in archiveSumList">
         <section class="time-section">
-          <h1 class="section-year" :click="getArchiveList(item.year)">
+          <h1 class="section-year" @click="getArchiveList(item.year)">
             {{ item.year }} - {{ item.count }}
           </h1>
-<!--          <div class="section-list">-->
-<!--            <div class="section-list-item">-->
-<!--              <label v-for="archive in archiveList">-->
-<!--                <a @click="showContent(archive.id)" class="archive-title">{{ archive.title }}</a>-->
-<!--                <p class="archive-date">{{ archive.date }}</p>-->
-<!--              </label>-->
-<!--            </div>-->
-<!--          </div>-->
+          <div class="section-list">
+            <label v-for="archive in archiveList">
+              <div class="section-list-item">
+                <a @click="showContent(archive.id)" class="archive-title">{{ archive.title }}</a>
+                <p class="archive-date">{{ archive.date }}</p>
+              </div>
+            </label>
+          </div>
         </section>
       </label>
     </main>

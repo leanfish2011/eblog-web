@@ -2,7 +2,7 @@
   <div id="about">
     <top-header></top-header>
     <div class="aboutContent">
-      关于我
+      <span v-html="DictUtil.findDictItem('aboutMe')"></span>
     </div>
     <bottom-footer></bottom-footer>
   </div>
@@ -11,9 +11,15 @@
 <script>
 import Header from '../Header'
 import Footer from '../Footer'
+import DictUtil from "../../../utils/dictUtil";
 
 export default {
   name: 'About',
+  computed: {
+    DictUtil() {
+      return DictUtil
+    }
+  },
   components: {
     "topHeader": Header,
     "bottomFooter": Footer

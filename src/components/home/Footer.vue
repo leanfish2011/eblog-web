@@ -1,15 +1,22 @@
 <template>
   <footer>
     <div class="footer">
-      <p class="copyright">Copyright © Tim 2016-{{ year }}</p>
+      <p class="copyright">{{ DictUtil.findDictItem('copyRight') }}{{ year }}</p>
     </div>
     <el-backtop></el-backtop>
   </footer>
 </template>
 
 <script>
+import DictUtil from "../../utils/dictUtil";
+
 export default {
   name: "Footer",
+  computed: {
+    DictUtil() {
+      return DictUtil
+    }
+  },
   data() {
     return {
       year: ''

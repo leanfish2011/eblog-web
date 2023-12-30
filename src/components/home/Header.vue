@@ -3,7 +3,7 @@
     <div class="header-container">
       <a class="home-link" href="/">
         <div class="logo"></div>
-        <span>Tim's Blog</span>
+        <span>{{ DictUtil.findDictItem('blogName') }}</span>
       </a>
       <ul class="right-list">
         <label v-for="item in menuData">
@@ -17,8 +17,15 @@
 </template>
 
 <script>
+import DictUtil from "../../utils/dictUtil";
+
 export default {
   name: "Header",
+  computed: {
+    DictUtil() {
+      return DictUtil
+    }
+  },
   data() {
     return {
       menuData: [

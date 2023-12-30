@@ -37,6 +37,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import Service from '../../../config/service'
 import DateUtil from '../../../utils/dateUtil'
+import DictUtil from '../../../utils/dictUtil'
 
 export default {
   name: 'Home',
@@ -53,10 +54,12 @@ export default {
         pageNo: 1,
         pageSize: 10
       },
+      dict: null
     }
   },
   created() {
     this.getList();
+    this.getDict();
   },
   methods: {
     getList() {
@@ -93,6 +96,25 @@ export default {
     //时间格式化
     dateFormat(createTime) {
       return DateUtil.dateFormat(createTime);
+    },
+    getDict() {
+      this.$axios.get(Service.dictUrl.dict).then((res) => {
+        if (res.status === 200) {
+          let responseData = res.data;
+          if (responseData.code === 0) {
+            this.dict = responseData.data;
+
+            // 存储数据字典
+            DictUtil.saveDictTmp(this.dict);
+          } else {
+            this.$message.error(responseData.msg);
+          }
+        } else {
+          this.$message.error("系统内部错误");
+        }
+      }).catch(function (error) {
+        console.error(error);
+      });
     }
   }
 }
@@ -158,7 +180,7 @@ h2.article-head {
   transform: translateX(10px);
 }
 
-.list-page{
+.list-page {
   margin: 30px 0;
 }
 </style>

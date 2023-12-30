@@ -6,7 +6,7 @@
 const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}`;
 
 // debug
-//const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}` + ':9091';
+// const ROOT_PATH = `${window.location.origin.replace(/:\d+/, '')}` + ':9091';
 // 或者连nginx，
 // const ROOT_PATH = 'http://112.74.40.65';
 
@@ -18,7 +18,7 @@ const serviceGate = {
 };
 
 //3、各个模块具体接口
-// 1、auth模块接口
+// (1)auth模块接口
 const authUrl = {
   login: serviceGate.postService + '/access/login',
   logout: serviceGate.postService + '/access/logout',
@@ -26,13 +26,14 @@ const authUrl = {
   authProfile: serviceGate.postService + '/access/profile'
 };
 
-// 2、blog模块接口
+// (2)blog模块接口
 const blogUrl = {
   blog: serviceGate.postService + '/blog',
-  archive: serviceGate.postService + '/blog/archive'
+  archive: serviceGate.postService + '/blog/archive',
+  tag: serviceGate.postService + '/blog/tag'
 };
 
-// 3、file模块接口
+// (3)file模块接口
 const fileUrl = {
   file: serviceGate.postService + '/file'
 };

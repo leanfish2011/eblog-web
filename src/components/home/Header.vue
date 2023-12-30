@@ -39,11 +39,6 @@ export default {
         },
         {
           id: "4",
-          name: "链接",
-          route: "/link",
-        },
-        {
-          id: "5",
           name: "关于",
           route: "/about",
         }

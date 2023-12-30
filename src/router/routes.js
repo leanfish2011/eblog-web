@@ -9,7 +9,6 @@ import About from '../components/home/item/About'
 import Login from '../components/home/login/Login'
 import Tag from '../components/home/item/Tag'
 import Archive from '../components/home/item/Archive';
-import Link from '../components/home/item/Link';
 import Manage from '../components/manage/Manage'
 import BlogList from '../components/manage/blog/BlogList'
 import BlogAdd from '../components/manage/blog/BlogAdd'
@@ -22,7 +21,6 @@ export default [
   {path: "/login", component: Login},
   {path: "/tag", component: Tag},
   {path: "/archive", component: Archive},
-  {path: "/link", component: Link},
   {
     path: "/manage",
     component: Manage,

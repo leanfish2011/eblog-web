@@ -13,7 +13,7 @@
             <i class="el-icon-document"></i>
             <h3 class="tags-item-label">{{ blogData.tag }}</h3>
             <label v-for="blog in blogData.tagBlogList">
-              <a class="tags-post" :href="blog.id">
+              <a class="tags-post" @click="showContent(blog.id)">
                 <div>
                   <span class="tags-post-title">{{ blog.title }}</span>
                   <div class="tags-post-line"></div>
@@ -87,6 +87,12 @@ export default {
     //时间格式化
     dateFormat(createTime) {
       return DateUtil.dateFormat(createTime);
+    },
+    showContent(id) {
+      this.$router.push({
+        path: '/blogview',
+        query: {id: id} // 参数传值
+      })
     }
   }
 }

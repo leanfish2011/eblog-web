@@ -1,9 +1,9 @@
 <template>
-  <div id="about">
+  <div id="link">
     <top-header></top-header>
-    <div class="aboutContent">
-      关于我
-    </div>
+    <main class="app-body" id="links">
+      链接
+    </main>
     <bottom-footer></bottom-footer>
   </div>
 </template>
@@ -11,9 +11,10 @@
 <script>
 import Header from '../Header'
 import Footer from '../Footer'
+import Service from "../../../config/service";
 
 export default {
-  name: 'About',
+  name: "Link",
   components: {
     "topHeader": Header,
     "bottomFooter": Footer
@@ -22,14 +23,8 @@ export default {
 </script>
 
 <style scoped>
-#about {
+#link {
   width: 100%;
   margin-top: 80px;
-}
-
-.aboutContent {
-  width: 50%;
-  min-height: calc(100vh - 186px);
-  margin: 5px auto 5px auto;
 }
 </style>

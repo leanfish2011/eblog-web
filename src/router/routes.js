@@ -7,9 +7,9 @@ import Home from '../components/home/item/Home'
 import BlogView from '../components/home/item/BlogView'
 import About from '../components/home/item/About'
 import Login from '../components/home/login/Login'
-import Tool from '../components/home/item/Tool'
-import Project from '../components/home/item/Project'
-import Archive from "../components/home/item/Archive";
+import Tag from '../components/home/item/Tag'
+import Archive from '../components/home/item/Archive';
+import Link from '../components/home/item/Link';
 import Manage from '../components/manage/Manage'
 import BlogList from '../components/manage/blog/BlogList'
 import BlogAdd from '../components/manage/blog/BlogAdd'
@@ -20,9 +20,9 @@ export default [
   {path: "/blogview", component: BlogView},
   {path: "/about", component: About},
   {path: "/login", component: Login},
-  {path: "/tool", component: Tool},
-  {path: "/project", component: Project},
+  {path: "/tag", component: Tag},
   {path: "/archive", component: Archive},
+  {path: "/link", component: Link},
   {
     path: "/manage",
     component: Manage,

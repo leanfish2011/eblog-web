@@ -1,0 +1,51 @@
+<template>
+  <div id="about">
+    <top-header></top-header>
+    <div class="aboutContent">
+      <el-tabs tab-position="left">
+        <el-tab-pane label="关于我">
+          <about-me></about-me>
+        </el-tab-pane>
+        <el-tab-pane label="关于博客">
+          <about-site></about-site>
+        </el-tab-pane>
+        <el-tab-pane label="更新日志">
+          <about-update></about-update>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+    <bottom-footer></bottom-footer>
+  </div>
+</template>
+
+<script>
+import Header from '../Header'
+import Footer from '../Footer'
+import AboutMe from './about_bak/Me'
+import AboutUpdate from './about_bak/Update'
+import AboutSite from './about_bak/Site'
+
+export default {
+  name: 'About',
+  components: {
+    "topHeader": Header,
+    "bottomFooter": Footer,
+    "aboutMe": AboutMe,
+    "aboutUpdate": AboutUpdate,
+    "aboutSite": AboutSite
+  }
+}
+</script>
+
+<style scoped>
+#about {
+  width: 100%;
+  margin-top: 80px;
+}
+
+.aboutContent {
+  width: 50%;
+  min-height: calc(100vh - 186px);
+  margin: 5px auto 5px auto;
+}
+</style>

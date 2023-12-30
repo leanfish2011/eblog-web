@@ -29,18 +29,18 @@ export default {
         },
         {
           id: "2",
+          name: "标签",
+          route: "/tag",
+        },
+        {
+          id: "3",
           name: "归档",
           route: "/archive",
         },
         {
-          id: "3",
-          name: "项目",
-          route: "/project",
-        },
-        {
           id: "4",
-          name: "工具",
-          route: "/tool",
+          name: "链接",
+          route: "/link",
         },
         {
           id: "5",

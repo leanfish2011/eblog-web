@@ -12,6 +12,7 @@ import Archive from '../components/home/item/Archive';
 import Manage from '../components/manage/Manage'
 import BlogList from '../components/manage/blog/BlogList'
 import BlogAdd from '../components/manage/blog/BlogAdd'
+import DictList from '../components/manage/dict/DictList'
 
 // 2、设置路由路径
 export default [
@@ -26,7 +27,8 @@ export default [
     component: Manage,
     children: [
       {path: "/bloglist", component: BlogList},
-      {path: "/blogadd", component: BlogAdd}
+      {path: "/blogadd", component: BlogAdd},
+      {path: "/dictlist", component: DictList}
     ]
   }
 ]

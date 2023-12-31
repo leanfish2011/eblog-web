@@ -17,6 +17,10 @@
         <i class="el-icon-edit"></i>
         <span slot="title">博客发布</span>
       </el-menu-item>
+      <el-menu-item index="/dictlist">
+        <i class="el-icon-notebook-2"></i>
+        <span slot="title">数据字典</span>
+      </el-menu-item>
       <el-menu-item index="/">
         <i class="el-icon-s-home"></i>
         <span slot="title">回到首页</span>

@@ -33,8 +33,8 @@
           prop="arrayTag"
           label="标签">
         <template slot-scope="scope">
-          <span v-for="(item,index) in scope.row.arrayTag" :key="index">
-            {{ item }},
+          <span>
+            {{ scope.row.arrayTag.join(',') }}
           </span>
         </template>
       </el-table-column>

@@ -87,7 +87,6 @@ export default {
       this.$confirm('将清空当前编辑内容，确定?', '提示', {
         type: 'warning'
       }).then(() => {
-        this.updateModel = Object.assign({}, "");
         this.$refs.meContentEditor.editorData = "";
       }).catch(
           () => {

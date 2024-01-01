@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form :model="loginModel" :rules="validRule" status-icon ref="loginForm"
              label-position="left" class="login-page">
-      <h2 class="title">eblog - 登录</h2>
+      <h2 class="title">博客管理 - 登录</h2>
       <el-form-item prop="userCode">
         <el-input v-model="loginModel.userCode" placeholder="请输入用户名">
         </el-input>
@@ -11,8 +11,8 @@
         <el-input type="password" v-model="loginModel.password" placeholder="请输入密码">
         </el-input>
       </el-form-item>
-      <el-checkbox v-model="checked" class="rememberme">记住密码
-      </el-checkbox>
+<!--      <el-checkbox v-model="checked" class="rememberme">记住密码-->
+<!--      </el-checkbox>-->
       <el-form-item style="width:100%;margin-top: 10px;">
         <el-button type="primary" style="width:100%;" @click="onSubmit" :loading="logining">登录
         </el-button>

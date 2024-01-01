@@ -61,16 +61,20 @@
         layout="prev, pager, next, total, sizes"
         :total="totalCount">
     </el-pagination>
+    <dict-update-dialog ref="updateDialog" @refresh="loadData()"></dict-update-dialog>
   </div>
 </template>
 
 <script>
 import Service from '../../../config/service'
 import DateUtil from '../../../utils/dateUtil'
-import AuthUtil from '../../../utils/authUtil'
+import DictUpdateDialog from './DictUpdateDialog.vue'
 
 export default {
   name: "DictList",
+  components: {
+    "dictUpdateDialog": DictUpdateDialog
+  },
   data() {
     return {
       perSize: 10,
@@ -104,11 +108,8 @@ export default {
       this.onSearch();
     },
     handleEdit(index, row) {
-      // TODO 行内编辑
-      this.$router.push({
-        path: '/blogadd',
-        query: {id: row.id} // 参数传值
-      })
+      this.$refs.updateDialog.dialogFormVisible = true;
+      this.$refs.updateDialog.updateModel = Object.assign({}, row);//将数据传入dialog页面
     },
     //时间格式化
     dateFormat(row) {

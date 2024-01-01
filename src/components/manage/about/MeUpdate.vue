@@ -41,6 +41,7 @@ export default {
       submiting: false,
       isAddStyle: false,
       updateModel: {
+        id: "",
         title: "",
         content: ""
       },
@@ -102,6 +103,7 @@ export default {
         if (res.status === 200) {
           let responseData = res.data;
           if (responseData.code === 0) {
+            this.updateModel.id = responseData.data.id;
             this.updateModel.title = responseData.data.title;
             this.updateModel.content = responseData.data.content;
 
@@ -126,12 +128,11 @@ export default {
         let meMode = JSON.parse(meModeObj);
         let storeTitle = meMode.title;
         //编辑的是上次那个内容才恢复
-        console.log(storeTitle);
-        console.log(this.updateModel.title);
         if (storeTitle === this.updateModel.title) {
           this.$confirm('是否恢复上次内容?', '提示', {
             type: 'warning'
           }).then(() => {
+            this.updateModel.id = meMode.id;
             this.updateModel.title = meMode.title;
             this.updateModel.content = meMode.content;
 

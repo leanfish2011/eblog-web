@@ -13,6 +13,7 @@ import Manage from '../components/manage/Manage'
 import BlogList from '../components/manage/blog/BlogList'
 import BlogAdd from '../components/manage/blog/BlogAdd'
 import DictList from '../components/manage/dict/DictList'
+import MeUpdate from '../components/manage/about/MeUpdate'
 
 // 2、设置路由路径
 export default [
@@ -28,7 +29,8 @@ export default [
     children: [
       {path: "/bloglist", component: BlogList},
       {path: "/blogadd", component: BlogAdd},
-      {path: "/dictlist", component: DictList}
+      {path: "/dictlist", component: DictList},
+      {path: "/me", component: MeUpdate}
     ]
   }
 ]

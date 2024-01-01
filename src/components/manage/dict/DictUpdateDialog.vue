@@ -6,8 +6,7 @@
                status-icon
                class="register-page">
         <el-form-item label="标题" prop="title">
-          <el-input v-model="updateModel.title" :disabled="true"
-                    placeholder="请输入标题"></el-input>
+          <el-input v-model="updateModel.title" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="内容" prop="content">
           <el-input v-model="updateModel.content" placeholder="请输入内容"></el-input>

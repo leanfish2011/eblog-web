@@ -18,11 +18,11 @@
         <span slot="title">博客发布</span>
       </el-menu-item>
       <el-menu-item index="/dictlist">
-        <i class="el-icon-notebook-2"></i>
+        <i class="el-icon-document"></i>
         <span slot="title">数据字典</span>
       </el-menu-item>
       <el-menu-item index="/me">
-        <i class="el-icon-notebook-2"></i>
+        <i class="el-icon-s-custom"></i>
         <span slot="title">关于</span>
       </el-menu-item>
       <el-menu-item index="/">
